@@ -26,7 +26,7 @@ The program calculates planetary orbit paths using a 4th-order Runge-Kutta (RK4)
 
 Running the script produces an elliptical trajectory around an Earth-sized central mass:
 
-![Simulation Output](orbital_simulation_output.png)
+![Simulation Output](orbitalmechanics/orbital_simulation_output.png)
 
 * **Trajectory:** Stable elliptical orbit starting at 7,000 km altitude with an initial velocity of 8.2 km/s.
 * **Energy Stability:** Relative energy error remains bounded below 0.0001% across thousands of time steps without orbital decay.
