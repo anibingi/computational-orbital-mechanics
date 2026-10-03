@@ -1,48 +1,46 @@
-# Two-Body Orbital Mechanics Simulation
+# Computational Physics: Dynamic Systems & Particle Simulations
 
-A Python simulation modeling two-body orbital dynamics using classical mechanics and numerical integration.
+A Python toolkit implementing numerical methods to model classical and electromagnetic dynamic systems under non-linear vector force fields.
 
-The program calculates planetary orbit paths using a 4th-order Runge-Kutta (RK4) algorithm, tracks satellite trajectories, and verifies physical conservation of mechanical energy over multiple orbits.
-
----
-
-## Key Features
-
-* **RK4 Numerical Solver:** Integrates Newton's gravitational equations of motion step-by-step with high numerical precision.
-* **Energy Conservation Tracking:** Continuously monitors total mechanical energy (kinetic + potential) to verify simulation stability.
-* **Automated Plotting:** Generates side-by-side visual plots of the 2D orbital trajectory and energy error over time.
+This repository covers two core physical domains:
+1. **Orbital Mechanics:** Two-body gravitational trajectory modeling using a 4th-order Runge-Kutta (RK4) integrator.
+2. **Plasma Kinetics:** Charged particle gyromotion and magnetic gradient drift modeling using the Boris integration algorithm.
 
 ---
 
-## How It Works
+## 1. Two-Body Orbital Dynamics (RK4)
 
-1. **Gravitational Model:** Uses Newton's Law of Universal Gravitation, where acceleration towards the central body depends on distance and mass.
-2. **Numerical Integration (RK4):** Instead of standard step-by-step Euler updates (which drift and lose accuracy over time), the 4th-order Runge-Kutta method samples four points per time step to calculate an accurate trajectory.
-3. **Physical Validation:** Checks that the total energy remains constant across multiple completed orbits.
+Simulates satellite trajectories in a central gravitational field by solving Newton's second law of motion:
 
----
+$$\frac{d^2\vec{r}}{dt^2} = -\frac{G M}{\Vert{}\vec{r}\Vert{}^3}\vec{r}$$
 
-## Results & Visuals
+* **Numerical Scheme:** Classical 4th-order Runge-Kutta (RK4) advancing coupled position and velocity differential equations.
+* **Physical Validation:** Measures specific mechanical energy ($E = \frac{1}{2}v^2 - \frac{GM}{r}$) across multi-orbit durations, maintaining bounded relative energy error below 0.0001% without secular decay.
 
-Running the script produces an elliptical trajectory around an Earth-sized central mass:
-
-![Simulation Output](orbital-mechanics/orbital_simulation_output.png)
-
-* **Trajectory:** Stable elliptical orbit starting at 7,000 km altitude with an initial velocity of 8.2 km/s.
-* **Energy Stability:** Relative energy error remains bounded below 0.0001% across thousands of time steps without orbital decay.
+![Orbital Trajectory and Energy Conservation](orbital_mechanics/orbital_simulation_output.png)
 
 ---
 
-## Quick Start
+## 2. Energetic Particle Gyromotion & Magnetic Drift (Boris Solver)
 
-### Requirements
-* Python 3.8+
-* numpy
-* matplotlib
+Simulates the phase-space trajectory of an energetic ion (Deuteron) in a non-uniform magnetic field with an active gradient ($\nabla B$ drift), governed by the Lorentz force:
 
-### Run the Simulation
-```bash
-git clone [https://github.com/](https://github.com/)<your-username>/computational-orbital-mechanics.git
-cd computational-orbital-mechanics
-pip install numpy matplotlib
-python orbital_sim.py
+$$\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})$$
+
+* **Numerical Scheme:** Symplectic Boris leapfrog algorithm, phase-splitting the electric field acceleration and magnetic gyro-rotation to ensure long-term phase-space conservation.
+* **Physical Validation:** Captures cyclotron gyromotion and perpendicular guiding-center drift while preserving kinetic energy in a static magnetic field.
+
+![Particle Drift and Gyromotion](plasma_particle_modeling/particle_drift_output.png)
+
+---
+
+## Project Structure
+
+```text
+├── README.md
+├── orbital_mechanics/
+│   ├── orbital_sim.py
+│   └── orbital_simulation_output.png
+└── plasma_particle_modeling/
+    ├── boris_lorentz_sim.py
+    └── particle_drift_output.png
