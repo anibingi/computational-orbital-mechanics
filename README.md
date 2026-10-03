@@ -17,7 +17,7 @@ $$\frac{d^2\vec{r}}{dt^2} = -\frac{G M}{\Vert{}\vec{r}\Vert{}^3}\vec{r}$$
 * **Numerical Scheme:** Classical 4th-order Runge-Kutta (RK4) advancing coupled position and velocity differential equations.
 * **Physical Validation:** Measures specific mechanical energy ($E = \frac{1}{2}v^2 - \frac{GM}{r}$) across multi-orbit durations, maintaining bounded relative energy error below 0.0001% without secular decay.
 
-![Orbital Trajectory and Energy Conservation](orbital_mechanics/orbital_simulation_output.png)
+![Orbital Trajectory and Energy Conservation](orbital-mechanics/orbital_simulation_output.png)
 
 ---
 
